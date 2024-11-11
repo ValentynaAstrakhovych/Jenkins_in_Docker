@@ -1,0 +1,16 @@
+version: '3.8'
+services:
+  jenkins:
+    image: jenkins:custom_plugins
+    ports:
+      - "8080:8080"
+    volumes:
+      - jenkins_data:/var/jenkins_home
+      - ./plugins.txt:/usr/share/jenkins/ref/plugins.txt
+volumes:
+  jenkins_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ./jenkins_data  # Path to the local folder on your host machine
+      o: bind
